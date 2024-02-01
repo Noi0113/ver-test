@@ -8,7 +8,7 @@ user_input = st.text_input("何か入力してください")
 
 if st.button("送信"):
     # データをデータベースに保存
-    conn = sqlite3.connect('test-monketsu.db')
+    conn = sqlite3.connect('test-monketsu2.db')
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS user_inputs (input TEXT)")
     c.execute("INSERT INTO user_inputs VALUES (?)", (user_input,))
@@ -18,7 +18,7 @@ if st.button("送信"):
 
     # Gitコマンドを実行
     try:
-        subprocess.check_call(['git', 'add', 'test-monketsu.db'])
+        subprocess.check_call(['git', 'add', 'test-monketsu2.db'])
         subprocess.check_call(['git', 'commit', '-m', 'Update database'])
         subprocess.check_call(['git', 'push'])
         st.write("データベースがGitHubリポジトリにプッシュされました。")
